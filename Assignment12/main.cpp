@@ -18,6 +18,10 @@ int main(){
 // GOOD write students array to studentsOutput.txt file #3
     ofstream output;
     output.open("/Users/hchen24/Desktop/studentsOutput.txt", ios::out);
+    if(!output){
+        cout<<"Error opening file"<<endl;
+        return 0;
+    }
     for(int i =0; i<4; i++){
         output<<students[i].age<<" "<<students[i].gpa<<" "<<students[i].grade<<" "<<students[i].name<<endl;
     }
@@ -25,6 +29,10 @@ int main(){
     
     //GOOD get studentsIn.txt file content into array #5
     ifstream input;
+    if(!input){
+        cout<<"Error opening file"<<endl;
+        return 0;
+    }
     input.open("/Users/hchen24/Desktop/studentsIn.txt", ios::in);
     string myArray[500];
     int i=0;
@@ -38,12 +46,20 @@ int main(){
 
     //writing myArray to studentsOutput.bin #6 GOOD
     fstream file("/Users/hchen24/Desktop/studentsOutput.bin", ios::out | ios::binary);
+    if(!file){
+        cout<<"Error opening file"<<endl;
+        return 0;
+    }
     file.write((char *) &myArray, sizeof(myArray));
 
         
     //get studentOutput.bin content into another array #7 GOOD
     string myArray2[500];
     ifstream inFile("/Users/hchen24/Desktop/studentsOutput.bin", ios::in | ios::binary);
+    if(!inFile){
+        cout<<"Error opening file"<<endl;
+        return 0;
+    }
     inFile.read((char*) &myArray2,sizeof(myArray));
     
     //compare arrays
